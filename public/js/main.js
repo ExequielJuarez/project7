@@ -71,6 +71,7 @@
     el.style.opacity = 1; el._lines = $$('.split-line>span', el);
     gsap.set(el._lines, { yPercent: 115, rotate: 3 });
   });
+  gsap.set($$('[data-reveal],[data-split-in]'), { y: 34 });
   const reveal = (el) => {
     if (el._lines) gsap.to(el._lines, { yPercent: 0, rotate: 0, duration: 1.4, ease: 'expo.out', stagger: 0.12 });
     else gsap.to(el, { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out', clearProps: 'transform' });
