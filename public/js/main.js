@@ -85,13 +85,17 @@
       start: 'top 94%', once: true, interval: 0.1, batchMax: 4,
       onEnter: (els) => gsap.fromTo(els, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, clearProps: 'transform' }),
     });
-    // parallax
+    // parallax: los fondos se mueven bastante más lento que el scroll (con inercia)
     $$('[data-parallax]').forEach((el) => {
       const s = parseFloat(el.dataset.parallax) * 40;
-      gsap.set(el, { scale: el.closest('.banner') ? 1.2 : 1 });
+      const inBanner = !!el.closest('.banner');
+      gsap.set(el, { scale: inBanner ? 1.5 : 1 });
       gsap.fromTo(el, { yPercent: -s }, { yPercent: s, ease: 'none',
-        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+        scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: 0.8 } });
     });
+    // fondo del hero: además se acerca despacio al bajar
+    gsap.to('.hero__bg', { scale: 1.18, ease: 'none', scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 } });
+    $$('.page-hero__bg').forEach((el) => gsap.to(el, { scale: 1.15, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top top', end: 'bottom top', scrub: 0.8 } }));
     // banners: se abren al entrar
     $$('[data-reveal-banner]').forEach((b) => {
       gsap.fromTo(b, { clipPath: 'inset(0 12% 0 12%)' }, { clipPath: 'inset(0 0% 0 0%)', ease: 'none',
@@ -122,11 +126,28 @@
     });
   };
 
+  /* ---------- footer fijo que se descubre al llegar al final ---------- */
+  const footer = $('.footer'), main = $('main');
+  const fitFooter = () => {
+    const h = footer.offsetHeight;
+    const ok = h <= innerHeight * 0.92;
+    document.body.classList.toggle('footer-fixed', ok);
+    main.style.marginBottom = ok ? h + 'px' : '';
+    return ok ? h : 0;
+  };
+  let footH = fitFooter();
+  addEventListener('resize', () => { footH = fitFooter(); ScrollTrigger.refresh(); });
+  const initFooter = () => {
+    if (!footH) return;
+    gsap.fromTo('.footer__grid', { yPercent: -25, opacity: 0.2 }, { yPercent: 0, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: main, start: 'bottom bottom', end: () => `bottom bottom-=${footH}`, scrub: true, invalidateOnRefresh: true } });
+  };
+
   /* ---------- preloader ---------- */
   const start = () => {
     gsap.to('.preloader', { yPercent: -100, duration: 1, ease: 'expo.inOut', onComplete: () => $('.preloader').remove() });
     document.body.classList.remove('is-loading');
-    initScroll(); ScrollTrigger.refresh();
+    initScroll(); initFooter(); ScrollTrigger.refresh();
   };
   const minWait = new Promise((r) => setTimeout(r, 1200));
   const loaded = new Promise((r) => (document.readyState === 'complete' ? r() : addEventListener('load', r)));

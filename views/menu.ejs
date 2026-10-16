@@ -1,6 +1,6 @@
 <%- include('partials/head') %>
 <section class="page-hero page-hero--img" style="--img:url('<%= gallery.menuHero %>')">
-  <div class="page-hero__bg" data-parallax="0.25"></div>
+  <div class="page-hero__bg" data-parallax="0.4"></div>
   <div class="wrap page-hero__txt">
     <p class="eyebrow" data-split-in>Nuestra carta</p>
     <h1 class="display" data-split>Descubrí<br>nuestro menú</h1>
@@ -18,9 +18,9 @@
   <div class="cat" id="<%= cat.slug %>" data-section>
     <div class="banner" data-reveal-banner>
       <div class="banner__imgs">
-        <div style="background-image:url('<%= cat.image2 %>')" data-parallax="-0.08"></div>
-        <div style="background-image:url('<%= cat.image %>')" data-parallax="0.08"></div>
-        <div style="background-image:url('<%= cat.image3 %>')" data-parallax="-0.08"></div>
+        <div style="background-image:url('<%= cat.image2 %>')" data-parallax="-0.5"></div>
+        <div style="background-image:url('<%= cat.image %>')" data-parallax="0.5"></div>
+        <div style="background-image:url('<%= cat.image3 %>')" data-parallax="-0.5"></div>
       </div>
       <div class="banner__txt"><h2><%= cat.name %></h2><p><%= cat.subtitle %></p></div>
       <span class="banner__n"><%= String(i + 1).padStart(2, '0') %>.</span>
