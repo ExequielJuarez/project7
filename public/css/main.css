@@ -233,6 +233,7 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rg
 /* reveal inicial (JS los activa; sin JS se ven normal) */
 .js [data-reveal],.js [data-split-in]{opacity:0;transform:translateY(34px)}
 .js [data-split]{opacity:0}
+.js .item{opacity:0}
 .split-line{display:block;overflow:hidden;padding-bottom:.08em}
 .split-line>span{display:inline-block;will-change:transform}
 

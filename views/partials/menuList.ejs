@@ -1,6 +1,6 @@
 <ul class="items">
   <% cat.items.forEach(it => { %>
-  <li class="item" data-id="<%= it.id %>" data-name="<%= it.name %>" data-price="<%= it.price %>" data-cursor="Agregar" data-reveal>
+  <li class="item" data-id="<%= it.id %>" data-name="<%= it.name %>" data-price="<%= it.price %>" data-cursor="Agregar">
     <img class="item__img" src="<%= it.image %>" alt="<%= it.name %>" loading="lazy" width="64" height="64">
     <div class="item__body">
       <div class="item__row"><h4><%= it.name %></h4><i class="item__dots"></i><span class="item__price"><%= money(it.price) %></span></div>

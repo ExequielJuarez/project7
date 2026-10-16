@@ -79,6 +79,11 @@
     $$('[data-split],[data-split-in],[data-reveal]').forEach((el) => {
       ScrollTrigger.create({ trigger: el, start: 'top 88%', once: true, onEnter: () => reveal(el) });
     });
+    // platos: entran en tandas, con un movimiento mínimo para que nunca se vean amontonados
+    ScrollTrigger.batch('.item', {
+      start: 'top 94%', once: true, interval: 0.1, batchMax: 4,
+      onEnter: (els) => gsap.fromTo(els, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out', stagger: 0.09, clearProps: 'transform' }),
+    });
     // parallax
     $$('[data-parallax]').forEach((el) => {
       const s = parseFloat(el.dataset.parallax) * 40;
