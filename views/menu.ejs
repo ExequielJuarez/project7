@@ -1,0 +1,38 @@
+<%- include('partials/head') %>
+<section class="page-hero page-hero--img" style="--bg:url('<%= gallery.menuHero %>')">
+  <div class="page-hero__bg" data-parallax="0.25"></div>
+  <div class="wrap page-hero__txt">
+    <p class="eyebrow" data-split-in>Nuestra carta</p>
+    <h1 class="display" data-split>Descubrí<br>nuestro menú</h1>
+    <span class="scroll-ind" aria-hidden="true"></span>
+  </div>
+  <div class="torn"></div>
+</section>
+
+<nav class="dots" id="dots" aria-label="Secciones">
+  <% menu.forEach((cat, i) => { %><a href="#<%= cat.slug %>" data-cursor="<%= cat.name %>" aria-label="<%= cat.name %>"></a><% }) %>
+</nav>
+
+<section class="menu-page">
+  <% menu.forEach((cat, i) => { %>
+  <div class="cat" id="<%= cat.slug %>" data-section>
+    <div class="banner" data-reveal-banner>
+      <div class="banner__imgs">
+        <div style="background-image:url('<%= cat.image2 %>')" data-parallax="-0.08"></div>
+        <div style="background-image:url('<%= cat.image %>')" data-parallax="0.08"></div>
+        <div style="background-image:url('<%= cat.image3 %>')" data-parallax="-0.08"></div>
+      </div>
+      <div class="banner__txt"><h2><%= cat.name %></h2><p><%= cat.subtitle %></p></div>
+      <span class="banner__n"><%= String(i + 1).padStart(2, '0') %>.</span>
+      <i class="corner corner--tl"></i><i class="corner corner--br"></i>
+    </div>
+    <div class="wrap"><%- include('partials/menuList', { cat }) %><div class="sep" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+  </div>
+  <% }) %>
+</section>
+
+<section class="cta-strip"><div class="wrap">
+  <h2 class="display display--md">¿Listo para sentarte?</h2>
+  <a class="btn btn--solid" href="/reservas">Reservar mesa <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+</div></section>
+<%- include('partials/foot') %>

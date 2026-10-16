@@ -1,0 +1,20 @@
+<form class="form card" id="reserveForm" novalidate>
+  <label class="field"><span>Fecha</span><input type="date" name="date" id="rDate" required></label>
+  <label class="field"><span>Horario</span>
+    <select name="time" required><option value="">Seleccioná un horario</option>
+      <% ['19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00'].forEach(t => { %><option><%= t %></option><% }) %>
+    </select></label>
+  <label class="field"><span>Personas</span>
+    <select name="guests" required><option value="">¿Cuántas son?</option>
+      <% for (let i = 1; i <= 12; i++) { %><option value="<%= i %>"><%= i %> <%= i === 1 ? 'persona' : 'personas' %></option><% } %>
+    </select></label>
+  <% if (locals.full) { %>
+  <label class="field"><span>Nombre</span><input name="name" required autocomplete="name" placeholder="Tu nombre"></label>
+  <label class="field"><span>Teléfono</span><input name="phone" required autocomplete="tel" inputmode="tel" placeholder="Para confirmarte la reserva"></label>
+  <label class="field"><span>Email (opcional)</span><input type="email" name="email" autocomplete="email" placeholder="tu@email.com"></label>
+  <label class="field"><span>Comentarios (opcional)</span><textarea name="notes" rows="2" placeholder="Cumpleaños, alergias, terraza..."></textarea></label>
+  <% } %>
+  <button class="btn btn--solid btn--block" type="submit">Reservar ahora <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></button>
+  <p class="form__msg" id="reserveMsg" role="status"></p>
+  <a class="wa" href="https://wa.me/5491100000000" target="_blank" rel="noopener" data-cursor="WhatsApp">También podés reservar por WhatsApp →</a>
+</form>

@@ -1,0 +1,54 @@
+<%- include('partials/head') %>
+<section class="hero" style="--bg:url('<%= gallery.hero %>')">
+  <div class="hero__bg" data-parallax="0.2"></div>
+  <div class="hero__shade"></div>
+  <div class="wrap hero__grid">
+    <div class="hero__txt">
+      <p class="eyebrow" data-split-in>Bienvenidos a</p>
+      <h1 class="display display--xl" data-split>SORA<br>SUSHI</h1>
+      <p class="hero__tag" data-split-in>Sabores del Pacífico,<br>en un ambiente único.</p>
+      <a class="btn btn--ghost" href="/menu">Ver menú <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+    </div>
+    <div class="hero__cards">
+      <a class="qcard" href="/menu" data-cursor="Ver"><img src="<%= gallery.card1 %>" alt="" loading="eager"><div><h3>Menú</h3><p>Descubrí nuestros platos</p></div><svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+      <a class="qcard" href="/reservas" data-cursor="Reservar"><img src="<%= gallery.card2 %>" alt="" loading="eager"><div><h3>Reservas</h3><p>Reservá tu mesa</p></div><svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+      <a class="qcard" href="/nosotros" data-cursor="Leer"><img src="<%= gallery.card3 %>" alt="" loading="eager"><div><h3>Nosotros</h3><p>Conocé nuestra historia</p></div><svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+    </div>
+  </div>
+  <div class="torn"></div>
+</section>
+
+<section class="menu-teaser">
+  <div class="menu-teaser__media" style="--bg:url('<%= gallery.menuBg %>')"><div data-parallax="0.12"></div></div>
+  <div class="menu-teaser__txt">
+    <p class="eyebrow" data-reveal>Nuestra carta</p>
+    <h2 class="display" data-split>Menú</h2>
+    <p class="lead" data-reveal>Una selección de sabores que combinan lo tradicional con lo innovador. Rolls, nigiris, sashimis y mucho más.</p>
+    <a class="btn btn--ghost" href="/menu" data-reveal>Ver menú completo <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+  </div>
+  <ul class="menu-teaser__list">
+    <% menu.forEach(cat => { const it = cat.items[0]; const min = Math.min(...cat.items.map(i => i.price)); %>
+    <li data-reveal>
+      <a href="/menu#<%= cat.slug %>" data-cursor="Ver">
+        <img src="<%= it.image %>" alt="<%= cat.name %>" loading="lazy" width="100" height="78">
+        <div class="mt__body"><h3><%= cat.name %></h3><p><%= cat.subtitle %></p></div>
+        <span class="mt__price"><small>desde</small> <%= money(min) %></span>
+        <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+</section>
+
+<section class="reserve" style="--bg:url('<%= gallery.reserve %>')">
+  <div class="reserve__bg" data-parallax="0.15"></div>
+  <div class="wrap reserve__grid">
+    <div class="reserve__txt">
+      <p class="eyebrow eyebrow--line" data-split-in>Tu mesa te espera</p>
+      <h2 class="display" data-split>Hacé tu<br>reserva</h2>
+      <p class="lead">Elegí fecha, horario y cantidad de personas. Nosotros nos encargamos del resto.</p>
+    </div>
+    <%- include('partials/reserveForm', { full: false }) %>
+  </div>
+</section>
+<%- include('partials/foot') %>

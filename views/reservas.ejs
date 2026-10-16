@@ -1,0 +1,13 @@
+<%- include('partials/head') %>
+<section class="reserve reserve--page" style="--bg:url('<%= gallery.reserve %>')">
+  <div class="reserve__bg" data-parallax="0.15"></div>
+  <div class="wrap reserve__grid">
+    <div class="reserve__txt">
+      <p class="eyebrow eyebrow--line" data-split-in>Tu mesa te espera</p>
+      <h1 class="display" data-split>Hacé tu<br>reserva</h1>
+      <p class="lead">Elegí fecha, horario y cantidad de personas. Nosotros nos encargamos del resto.</p>
+    </div>
+    <%- include('partials/reserveForm', { full: true }) %>
+  </div>
+</section>
+<%- include('partials/foot') %>

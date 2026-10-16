@@ -1,0 +1,17 @@
+<header class="header" id="header">
+  <a class="logo" href="/" aria-label="Sora Sushi, inicio"><span class="logo__mark">SORA</span><span class="logo__sub">SUSHI LOUNGE</span></a>
+  <nav class="nav" id="nav" aria-label="Principal">
+    <a href="/" class="<%= path === '/' ? 'is-active' : '' %>">Inicio</a>
+    <a href="/menu" class="<%= path === '/menu' ? 'is-active' : '' %>">Menú</a>
+    <a href="/nosotros" class="<%= path === '/nosotros' ? 'is-active' : '' %>">Nosotros</a>
+    <a href="/reservas" class="<%= path === '/reservas' ? 'is-active' : '' %>">Contacto</a>
+    <a href="/reservas" class="btn btn--ghost nav__cta">Reservar <svg class="arr" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></svg></a>
+  </nav>
+  <div class="header__tools">
+    <button class="cart-btn" id="cartOpen" aria-label="Abrir pedido" data-cursor="Pedido">
+      <svg viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11H6.2L5 8Zm4 0V6a3 3 0 0 1 6 0v2"/></svg><span class="cart-btn__n" id="cartCount">0</span>
+    </button>
+    <button class="burger" id="burger" aria-label="Menú" aria-expanded="false"><i></i><i></i></button>
+  </div>
+</header>
+<main>
