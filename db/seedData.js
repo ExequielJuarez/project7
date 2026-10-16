@@ -84,8 +84,8 @@ const categories = [
 ];
 
 const gallery = {
-  hero: u(IMG.room, 1920), about: u(IMG.room2, 1200), reserve: u(IMG.room3, 1600),
-  heroDish: u(IMG.platter, 1400), menuBg: u(IMG.boat, 1600),
+  hero: u(IMG.boat, 1920), about: u(IMG.room2, 1200), reserve: u(IMG.room3, 1600),
+  heroDish: u(IMG.platter, 1400), menuBg: u(IMG.maki, 1600),
   menuHero: u(IMG.rolls2, 1920), card1: u(IMG.platter, 500), card2: u(IMG.room, 500), card3: u(IMG.room2, 500),
 };
 

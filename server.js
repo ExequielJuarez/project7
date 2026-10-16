@@ -4,6 +4,7 @@ const express = require('express');
 const compression = require('compression');
 const db = require('./db');
 
+const BUILD = Date.now();
 const app = express();
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -14,13 +15,18 @@ app.use(express.urlencoded({ extended: false }));
 const nm = (p) => path.join(__dirname, 'node_modules', p);
 app.use('/vendor/gsap', express.static(nm('gsap/dist')));
 app.use('/vendor/lenis', express.static(nm('lenis/dist')));
-app.use(express.static(path.join(__dirname, 'public'), { maxAge: '7d' }));
+// css/js siempre se revalidan (así los cambios llegan al instante); imágenes y fuentes sí se cachean
+app.use(express.static(path.join(__dirname, 'public'), {
+  maxAge: '7d',
+  setHeaders: (res, file) => { if (/\.(css|js)$/.test(file)) res.setHeader('Cache-Control', 'no-cache'); },
+}));
 
 const money = (n) => '$ ' + Number(n).toLocaleString('es-AR');
 app.use((req, res, next) => {
   res.locals.money = money;
   res.locals.gallery = db.gallery;
   res.locals.path = req.path;
+  res.locals.v = BUILD;
   next();
 });
 
