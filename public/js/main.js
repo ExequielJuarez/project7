@@ -22,7 +22,7 @@
 
   /* ---------- cursor personalizado ---------- */
   if (fine) {
-    const cur = $('.cursor'), dot = $('.cursor__dot'), ring = $('.cursor__ring'), label = $('.cursor__label');
+    const cur = $('.cursor'), dot = $('.cursor__dot'), ring = $('.cursor__ring');
     let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
     addEventListener('mousemove', (e) => {
       mx = e.clientX; my = e.clientY; cur.classList.remove('is-hidden');
@@ -36,16 +36,7 @@
       ring.style.transform = `translate(${rx}px,${ry}px)`;
     });
     document.addEventListener('mouseover', (e) => {
-      const t = e.target.closest('[data-cursor]');
-      if (t) {
-        const big = t.matches('.item,.qcard,.menu-teaser__list a,.dots a');
-        if (t.matches('.dots a,.social a,.cart-btn')) cur.classList.add('is-link'), cur.classList.remove('is-hover');
-        else { label.textContent = t.dataset.cursor; cur.classList.add('is-hover'); cur.classList.remove('is-link'); }
-        if (!big && !t.matches('.item')) {/* tamaño estándar */}
-      } else {
-        cur.classList.remove('is-hover');
-        cur.classList.toggle('is-link', !!e.target.closest('a,button,select,input,textarea'));
-      }
+      cur.classList.toggle('is-link', !!e.target.closest('a,button,select,input,textarea,.item'));
     });
   }
 
@@ -132,7 +123,9 @@
     const h = footer.offsetHeight;
     const ok = h <= innerHeight * 0.92;
     document.body.classList.toggle('footer-fixed', ok);
-    main.style.marginBottom = ok ? h + 'px' : '';
+    // el footer sube por debajo del borde rasgado de la última sección
+    const torn = Math.min(56, Math.max(24, innerWidth * 0.04));
+    main.style.marginBottom = ok ? Math.round(h - torn) + 'px' : '';
     return ok ? h : 0;
   };
   let footH = fitFooter();
@@ -140,7 +133,7 @@
   const initFooter = () => {
     if (!footH) return;
     gsap.fromTo('.footer__grid', { yPercent: -25, opacity: 0.2 }, { yPercent: 0, opacity: 1, ease: 'none',
-      scrollTrigger: { trigger: main, start: 'bottom bottom', end: () => `bottom bottom-=${footH}`, scrub: true, invalidateOnRefresh: true } });
+      scrollTrigger: { trigger: main, start: 'bottom bottom', end: () => `bottom bottom-=${footH - 40}`, scrub: true, invalidateOnRefresh: true } });
   };
 
   /* ---------- preloader ---------- */

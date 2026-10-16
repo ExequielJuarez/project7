@@ -35,11 +35,7 @@ svg{fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-l
 .cursor__dot,.cursor__ring{position:fixed;left:0;top:0;border-radius:50%;will-change:transform}
 .cursor__dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--accent)}
 .cursor__ring{width:38px;height:38px;margin:-19px 0 0 -19px;border:1px solid var(--accent);display:grid;place-items:center;transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s,border-color .3s;opacity:.9}
-.cursor__label{font:400 .58rem/1.1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--bg);opacity:0;transition:opacity .2s;text-align:center;padding:0 4px}
-.cursor.is-hover .cursor__ring{width:92px;height:92px;margin:-46px 0 0 -46px;background:var(--accent);border-color:var(--accent)}
-.cursor.is-hover .cursor__label{opacity:1}
-.cursor.is-hover .cursor__dot{opacity:0}
-.cursor.is-link .cursor__ring{width:60px;height:60px;margin:-30px 0 0 -30px;background:rgba(214,230,176,.12)}
+.cursor.is-link .cursor__ring{width:52px;height:52px;margin:-26px 0 0 -26px}
 .cursor.is-down .cursor__ring{transform:scale(.8)}
 .cursor.is-hidden{opacity:0}
 
