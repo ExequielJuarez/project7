@@ -1,5 +1,5 @@
 <%- include('partials/head') %>
-<section class="hero" style="--bg:url('<%= gallery.hero %>')">
+<section class="hero" style="--img:url('<%= gallery.hero %>')">
   <div class="hero__bg" data-parallax="0.2"></div>
   <div class="hero__shade"></div>
   <div class="wrap hero__grid">
@@ -19,7 +19,7 @@
 </section>
 
 <section class="menu-teaser">
-  <div class="menu-teaser__media" style="--bg:url('<%= gallery.menuBg %>')"><div data-parallax="0.12"></div></div>
+  <div class="menu-teaser__media" style="--img:url('<%= gallery.menuBg %>')"><div data-parallax="0.12"></div></div>
   <div class="menu-teaser__txt">
     <p class="eyebrow" data-reveal>Nuestra carta</p>
     <h2 class="display" data-split>Menú</h2>
@@ -40,7 +40,7 @@
   </ul>
 </section>
 
-<section class="reserve" style="--bg:url('<%= gallery.reserve %>')">
+<section class="reserve" style="--img:url('<%= gallery.reserve %>')">
   <div class="reserve__bg" data-parallax="0.15"></div>
   <div class="wrap reserve__grid">
     <div class="reserve__txt">
