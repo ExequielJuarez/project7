@@ -1,4 +1,5 @@
 require('dotenv').config();
+const os = require('os');
 const path = require('path');
 const express = require('express');
 const compression = require('compression');
@@ -86,4 +87,19 @@ app.use((err, req, res, next) => { // eslint-disable-line
 });
 
 const PORT = process.env.PORT || 3000;
-db.connect().then(() => app.listen(PORT, () => console.log(`Sora Sushi en http://localhost:${PORT}`)));
+const HOST = process.env.HOST || '0.0.0.0'; // 0.0.0.0 = accesible desde otros dispositivos de tu red (celu, tablet)
+
+function lanUrls() {
+  return Object.values(os.networkInterfaces()).flat()
+    .filter((i) => i && i.family === 'IPv4' && !i.internal)
+    .map((i) => `http://${i.address}:${PORT}`);
+}
+
+db.connect().then(() => app.listen(PORT, HOST, () => {
+  console.log('\nSora Sushi listo:');
+  console.log(`  PC:      http://localhost:${PORT}`);
+  const lan = lanUrls();
+  lan.forEach((u) => console.log(`  Celular: ${u}   (mismo Wi-Fi que la PC)`));
+  if (!lan.length) console.log('  Celular: no se detectó IP de red local, revisá que estés conectado al Wi-Fi.');
+  console.log('');
+}));

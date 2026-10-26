@@ -11,6 +11,12 @@ npm start                   # http://localhost:3000
 ```
 Si MySQL no está disponible el sitio arranca igual con datos en memoria (sin persistir).
 
+## Probar desde el celular (misma red Wi-Fi)
+1. Conectá PC y celular al mismo Wi-Fi y corré `npm start`.
+2. En la terminal aparece una línea `Celular: http://192.168.x.x:3000`: abrila en el navegador del celu.
+3. Si no abre, permití el puerto 3000 en el firewall de la PC (Windows: *Permitir una aplicación* → Node.js en redes privadas)
+   y comprobá que el Wi-Fi no tenga "aislamiento de clientes" (redes de invitados).
+
 ## Estructura
 - `server.js` rutas (`/`, `/menu`, `/reservas`, `/nosotros`) y API (`/api/menu`, `/api/reservas`, `/api/pedido`)
 - `db/` esquema SQL, datos de ejemplo (`seedData.js`) y acceso a MySQL
